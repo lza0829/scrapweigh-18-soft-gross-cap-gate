@@ -1,0 +1,12 @@
+services:
+  api:
+    build: ./backend
+    ports: ["11700:11700"]
+    environment:
+      SCRAPWEIGH_DB: /data/scrapweigh.db
+    volumes:
+      - ./data:/data
+  web:
+    build: ./frontend
+    ports: ["6700:80"]
+    depends_on: [api]
